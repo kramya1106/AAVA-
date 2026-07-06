@@ -1,0 +1,2923 @@
+{
+  "meta": {
+    "analysis_version": "1.0",
+    "analyzed_at": "2025-01-15T10:30:00Z",
+    "source_file": "Test case 7.xlsx",
+    "source_repository": "AAVA-",
+    "source_branch": "main",
+    "analyzer": "Senior Test Case Analyst Agent",
+    "total_test_cases": 1,
+    "total_test_steps": 10,
+    "total_unique_ui_elements": 23,
+    "total_assertions": 20,
+    "total_pages_identified": 4,
+    "total_preconditions": 1,
+    "total_test_data_fields": 6,
+    "total_locators_needed": 23,
+    "total_action_methods_needed": 15,
+    "total_assertion_methods_needed": 12,
+    "total_page_objects_needed": 4,
+    "analysis_completeness": "full"
+  },
+  "excel_structure": {
+    "total_sheets": 1,
+    "sheet_names": [
+      "Sheet1"
+    ],
+    "columns_found": [
+      "tc_id",
+      "title",
+      "description",
+      "module",
+      "priority",
+      "preconditions",
+      "step_number",
+      "action",
+      "test_data",
+      "expected_result"
+    ],
+    "total_rows": 11,
+    "notes": "Excel file contains a single test case with 10 test steps covering user registration flow with form validation and email verification"
+  },
+  "test_cases": [
+    {
+      "test_case_metadata": {
+        "test_case_id": "TC_007",
+        "title": "Verify user registration with valid details",
+        "description": "Test the complete user registration flow including form validation, submission, and email verification",
+        "module": "User Management",
+        "sub_module": "Registration",
+        "priority": "High",
+        "severity": "Critical",
+        "test_type": "Functional",
+        "tags": [
+          "registration",
+          "user_management",
+          "email_verification",
+          "form_validation"
+        ],
+        "author": null,
+        "environment": null,
+        "browser_device": null,
+        "status": null,
+        "custom_fields": {}
+      },
+      "preconditions": [
+        {
+          "precondition_number": 1,
+          "raw_text": "User should have access to the application URL",
+          "interpreted_meaning": "The application must be accessible via a valid URL, the browser must be initialized, and network connectivity must be established. The registration page must be reachable and functional.",
+          "precondition_type": "environment_setup",
+          "is_inferred": false,
+          "implied_components": [
+            {
+              "component_type": "configuration",
+              "component_name_suggestion": "base_url",
+              "reason": "Need to configure the application base URL for navigation"
+            },
+            {
+              "component_type": "utility_function",
+              "component_name_suggestion": "initialize_browser",
+              "reason": "Need to initialize browser session before test execution"
+            },
+            {
+              "component_type": "utility_function",
+              "component_name_suggestion": "verify_application_accessible",
+              "reason": "Need to verify that the application is reachable before proceeding"
+            }
+          ]
+        }
+      ],
+      "test_steps": [
+        {
+          "step_number": 1,
+          "raw_action": "Navigate to the registration page",
+          "raw_expected_result": "Registration page should load successfully",
+          "raw_test_data": null,
+          "interpreted_action": "This step requires opening the browser, navigating to the application's registration page URL, waiting for the page to fully load, and verifying that all registration form elements are present and visible. The page load must complete without errors, and the registration form should be in a ready state for user interaction.",
+          "action_type": "navigate_to_url",
+          "sub_actions": [
+            {
+              "sub_action_number": 1,
+              "action": "Navigate to registration page URL",
+              "action_type": "navigate_to_url",
+              "element_involved": null,
+              "data_needed": "registration_page_url"
+            },
+            {
+              "sub_action_number": 2,
+              "action": "Wait for page to load completely",
+              "action_type": "wait",
+              "element_involved": "registration_form",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 3,
+              "action": "Verify registration form is visible",
+              "action_type": "verify",
+              "element_involved": "registration_form",
+              "data_needed": null
+            }
+          ],
+          "ui_elements_involved": [
+            {
+              "element_type": "form",
+              "element_name": "registration_form",
+              "element_identifier_hint": "Registration form container — likely has id='registrationForm' or class='registration-form' or form with registration fields",
+              "interaction_type": "verify_visible",
+              "page_context": "RegistrationPage",
+              "is_inferred": false,
+              "required_state": "visible_and_loaded"
+            },
+            {
+              "element_type": "heading",
+              "element_name": "registration_page_title",
+              "element_identifier_hint": "Page title or heading — likely has text 'Register' or 'Sign Up' or 'Create Account'",
+              "interaction_type": "verify_visible",
+              "page_context": "RegistrationPage",
+              "is_inferred": true,
+              "required_state": "visible"
+            }
+          ],
+          "navigation_involved": {
+            "is_navigation_step": true,
+            "from_page": "None — initial navigation",
+            "to_page": "RegistrationPage",
+            "navigation_method": "url_direct",
+            "url_hint": "/register or /signup or /create-account",
+            "expected_page_indicator": "Registration form is visible with all input fields"
+          },
+          "test_data_needed": [
+            {
+              "data_field_name": "registration_page_url",
+              "data_type": "url",
+              "sample_value": "https://app.example.com/register",
+              "is_provided_in_test_case": false,
+              "constraints": "Must be a valid URL pointing to the registration page",
+              "data_source": "environment_config",
+              "is_sensitive": false,
+              "used_for": "Browser navigation to registration page"
+            }
+          ],
+          "assertions": [
+            {
+              "assertion_number": 1,
+              "assertion_type": "page_loaded",
+              "target_element": "registration_form",
+              "expected_value": "Registration page is fully loaded",
+              "assertion_description": "Verify that the registration page loads successfully and the registration form is displayed",
+              "is_hard_assertion": true,
+              "is_inferred": false,
+              "suggested_method_name": "verify_registration_page_loaded"
+            },
+            {
+              "assertion_number": 2,
+              "assertion_type": "element_visible",
+              "target_element": "registration_form",
+              "expected_value": "visible",
+              "assertion_description": "Verify that the registration form is visible on the page",
+              "is_hard_assertion": true,
+              "is_inferred": false,
+              "suggested_method_name": "verify_registration_form_visible"
+            }
+          ],
+          "wait_conditions": [
+            {
+              "wait_type": "page_load_wait",
+              "wait_target": "RegistrationPage",
+              "suggested_timeout_seconds": 30,
+              "wait_description": "Wait for the registration page to fully load after URL navigation",
+              "when": "after_action"
+            },
+            {
+              "wait_type": "explicit_wait_visible",
+              "wait_target": "registration_form",
+              "suggested_timeout_seconds": 10,
+              "wait_description": "Wait for registration form to be visible confirming page load",
+              "when": "after_action"
+            }
+          ],
+          "error_scenarios": [
+            {
+              "error_description": "Registration page does not load — timeout or server error",
+              "error_indicator": "Page title does not match or registration form not found within timeout",
+              "error_type": "page_load_failure",
+              "recovery_action": "retry_once_then_fail",
+              "impact": "Blocks entire test execution"
+            },
+            {
+              "error_description": "Application returns 404 or 500 error page",
+              "error_indicator": "Error page displayed instead of registration form",
+              "error_type": "server_error",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Environment issue — test cannot proceed"
+            },
+            {
+              "error_description": "Registration form is not visible or partially loaded",
+              "error_indicator": "Form elements are missing or not interactable",
+              "error_type": "page_rendering_issue",
+              "recovery_action": "refresh_page_once_then_fail",
+              "impact": "Cannot proceed with form filling"
+            }
+          ],
+          "dependencies": {
+            "depends_on_step": null,
+            "dependency_type": null,
+            "dependency_detail": "This is the first step — no dependencies"
+          },
+          "api_calls_implied": [
+            {
+              "api_endpoint_hint": "GET /register or GET /signup",
+              "http_method": "GET",
+              "purpose": "Initial page load request for registration page",
+              "is_explicit": false,
+              "is_inferred": true
+            }
+          ],
+          "step_complexity": "low",
+          "automation_notes_for_step": "Standard navigation step. Ensure registration page URL is configurable via environment configuration. Add robust page load wait and verify all form elements are present before proceeding."
+        },
+        {
+          "step_number": 2,
+          "raw_action": "Enter valid first name in the First Name field",
+          "raw_expected_result": "First name should be accepted and displayed in the field",
+          "raw_test_data": "John",
+          "interpreted_action": "This step requires locating the first name input field on the registration form, clearing any existing content, entering the test data 'John' into the field, and verifying that the entered text is correctly displayed in the field. The field should accept alphabetic characters and display them without any validation errors.",
+          "action_type": "type_text",
+          "sub_actions": [
+            {
+              "sub_action_number": 1,
+              "action": "Locate first name input field",
+              "action_type": "locate_element",
+              "element_involved": "first_name_input",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 2,
+              "action": "Clear existing content in first name field",
+              "action_type": "clear",
+              "element_involved": "first_name_input",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 3,
+              "action": "Type first name into the field",
+              "action_type": "type",
+              "element_involved": "first_name_input",
+              "data_needed": "first_name"
+            },
+            {
+              "sub_action_number": 4,
+              "action": "Verify entered text is displayed",
+              "action_type": "verify",
+              "element_involved": "first_name_input",
+              "data_needed": "first_name"
+            }
+          ],
+          "ui_elements_involved": [
+            {
+              "element_type": "text_input",
+              "element_name": "first_name_input",
+              "element_identifier_hint": "First name input field — likely has id='firstName' or name='firstName' or placeholder='First Name' or label 'First Name'",
+              "interaction_type": "type",
+              "page_context": "RegistrationPage",
+              "is_inferred": false,
+              "required_state": "visible_and_enabled"
+            }
+          ],
+          "navigation_involved": {
+            "is_navigation_step": false,
+            "from_page": null,
+            "to_page": null,
+            "navigation_method": null,
+            "url_hint": null,
+            "expected_page_indicator": null
+          },
+          "test_data_needed": [
+            {
+              "data_field_name": "first_name",
+              "data_type": "string",
+              "sample_value": "John",
+              "is_provided_in_test_case": true,
+              "constraints": "Must be alphabetic characters, typically 1-50 characters",
+              "data_source": "test_data_inline",
+              "is_sensitive": false,
+              "used_for": "User first name for registration"
+            }
+          ],
+          "assertions": [
+            {
+              "assertion_number": 1,
+              "assertion_type": "field_value",
+              "target_element": "first_name_input",
+              "expected_value": "John",
+              "assertion_description": "Verify that the first name 'John' is accepted and displayed correctly in the first name field",
+              "is_hard_assertion": true,
+              "is_inferred": false,
+              "suggested_method_name": "verify_first_name_entered"
+            },
+            {
+              "assertion_number": 2,
+              "assertion_type": "no_validation_error",
+              "target_element": "first_name_validation_message",
+              "expected_value": "No error message displayed",
+              "assertion_description": "Verify that no validation error is displayed for the first name field",
+              "is_hard_assertion": false,
+              "is_inferred": true,
+              "suggested_method_name": "verify_no_first_name_error"
+            }
+          ],
+          "wait_conditions": [
+            {
+              "wait_type": "explicit_wait_visible",
+              "wait_target": "first_name_input",
+              "suggested_timeout_seconds": 5,
+              "wait_description": "Wait for first name input field to be visible and enabled",
+              "when": "before_action"
+            }
+          ],
+          "error_scenarios": [
+            {
+              "error_description": "First name field is not interactable or disabled",
+              "error_indicator": "Field is not enabled or not visible",
+              "error_type": "element_not_interactable",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Cannot enter first name"
+            },
+            {
+              "error_description": "First name field shows validation error for valid input",
+              "error_indicator": "Error message appears below field",
+              "error_type": "unexpected_validation_error",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Form validation is incorrect"
+            }
+          ],
+          "dependencies": {
+            "depends_on_step": 1,
+            "dependency_type": "sequential",
+            "dependency_detail": "Registration page must be loaded before entering first name"
+          },
+          "api_calls_implied": [],
+          "step_complexity": "low",
+          "automation_notes_for_step": "Standard text input interaction. Ensure field is visible and enabled before typing. Verify the entered value matches expected value."
+        },
+        {
+          "step_number": 3,
+          "raw_action": "Enter valid last name in the Last Name field",
+          "raw_expected_result": "Last name should be accepted and displayed in the field",
+          "raw_test_data": "Doe",
+          "interpreted_action": "This step requires locating the last name input field on the registration form, clearing any existing content, entering the test data 'Doe' into the field, and verifying that the entered text is correctly displayed in the field. The field should accept alphabetic characters and display them without any validation errors.",
+          "action_type": "type_text",
+          "sub_actions": [
+            {
+              "sub_action_number": 1,
+              "action": "Locate last name input field",
+              "action_type": "locate_element",
+              "element_involved": "last_name_input",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 2,
+              "action": "Clear existing content in last name field",
+              "action_type": "clear",
+              "element_involved": "last_name_input",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 3,
+              "action": "Type last name into the field",
+              "action_type": "type",
+              "element_involved": "last_name_input",
+              "data_needed": "last_name"
+            },
+            {
+              "sub_action_number": 4,
+              "action": "Verify entered text is displayed",
+              "action_type": "verify",
+              "element_involved": "last_name_input",
+              "data_needed": "last_name"
+            }
+          ],
+          "ui_elements_involved": [
+            {
+              "element_type": "text_input",
+              "element_name": "last_name_input",
+              "element_identifier_hint": "Last name input field — likely has id='lastName' or name='lastName' or placeholder='Last Name' or label 'Last Name'",
+              "interaction_type": "type",
+              "page_context": "RegistrationPage",
+              "is_inferred": false,
+              "required_state": "visible_and_enabled"
+            }
+          ],
+          "navigation_involved": {
+            "is_navigation_step": false,
+            "from_page": null,
+            "to_page": null,
+            "navigation_method": null,
+            "url_hint": null,
+            "expected_page_indicator": null
+          },
+          "test_data_needed": [
+            {
+              "data_field_name": "last_name",
+              "data_type": "string",
+              "sample_value": "Doe",
+              "is_provided_in_test_case": true,
+              "constraints": "Must be alphabetic characters, typically 1-50 characters",
+              "data_source": "test_data_inline",
+              "is_sensitive": false,
+              "used_for": "User last name for registration"
+            }
+          ],
+          "assertions": [
+            {
+              "assertion_number": 1,
+              "assertion_type": "field_value",
+              "target_element": "last_name_input",
+              "expected_value": "Doe",
+              "assertion_description": "Verify that the last name 'Doe' is accepted and displayed correctly in the last name field",
+              "is_hard_assertion": true,
+              "is_inferred": false,
+              "suggested_method_name": "verify_last_name_entered"
+            },
+            {
+              "assertion_number": 2,
+              "assertion_type": "no_validation_error",
+              "target_element": "last_name_validation_message",
+              "expected_value": "No error message displayed",
+              "assertion_description": "Verify that no validation error is displayed for the last name field",
+              "is_hard_assertion": false,
+              "is_inferred": true,
+              "suggested_method_name": "verify_no_last_name_error"
+            }
+          ],
+          "wait_conditions": [
+            {
+              "wait_type": "explicit_wait_visible",
+              "wait_target": "last_name_input",
+              "suggested_timeout_seconds": 5,
+              "wait_description": "Wait for last name input field to be visible and enabled",
+              "when": "before_action"
+            }
+          ],
+          "error_scenarios": [
+            {
+              "error_description": "Last name field is not interactable or disabled",
+              "error_indicator": "Field is not enabled or not visible",
+              "error_type": "element_not_interactable",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Cannot enter last name"
+            },
+            {
+              "error_description": "Last name field shows validation error for valid input",
+              "error_indicator": "Error message appears below field",
+              "error_type": "unexpected_validation_error",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Form validation is incorrect"
+            }
+          ],
+          "dependencies": {
+            "depends_on_step": 2,
+            "dependency_type": "sequential",
+            "dependency_detail": "First name must be entered before last name in typical form flow"
+          },
+          "api_calls_implied": [],
+          "step_complexity": "low",
+          "automation_notes_for_step": "Standard text input interaction. Ensure field is visible and enabled before typing. Verify the entered value matches expected value."
+        },
+        {
+          "step_number": 4,
+          "raw_action": "Enter valid email address in the Email field",
+          "raw_expected_result": "Email should be accepted and displayed in the field",
+          "raw_test_data": "john.doe@example.com",
+          "interpreted_action": "This step requires locating the email input field on the registration form, clearing any existing content, entering the test data 'john.doe@example.com' into the field, and verifying that the entered email is correctly displayed in the field. The field should accept a valid email format and display it without any validation errors. The email format validation may occur on blur or on submit.",
+          "action_type": "type_text",
+          "sub_actions": [
+            {
+              "sub_action_number": 1,
+              "action": "Locate email input field",
+              "action_type": "locate_element",
+              "element_involved": "email_input",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 2,
+              "action": "Clear existing content in email field",
+              "action_type": "clear",
+              "element_involved": "email_input",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 3,
+              "action": "Type email address into the field",
+              "action_type": "type",
+              "element_involved": "email_input",
+              "data_needed": "email"
+            },
+            {
+              "sub_action_number": 4,
+              "action": "Verify entered email is displayed",
+              "action_type": "verify",
+              "element_involved": "email_input",
+              "data_needed": "email"
+            }
+          ],
+          "ui_elements_involved": [
+            {
+              "element_type": "email_input",
+              "element_name": "email_input",
+              "element_identifier_hint": "Email input field — likely has id='email' or name='email' or type='email' or placeholder='Email Address' or label 'Email'",
+              "interaction_type": "type",
+              "page_context": "RegistrationPage",
+              "is_inferred": false,
+              "required_state": "visible_and_enabled"
+            }
+          ],
+          "navigation_involved": {
+            "is_navigation_step": false,
+            "from_page": null,
+            "to_page": null,
+            "navigation_method": null,
+            "url_hint": null,
+            "expected_page_indicator": null
+          },
+          "test_data_needed": [
+            {
+              "data_field_name": "email",
+              "data_type": "email",
+              "sample_value": "john.doe@example.com",
+              "is_provided_in_test_case": true,
+              "constraints": "Must be a valid email format (user@domain.com), unique in the system",
+              "data_source": "test_data_inline",
+              "is_sensitive": true,
+              "used_for": "User email for registration and login"
+            }
+          ],
+          "assertions": [
+            {
+              "assertion_number": 1,
+              "assertion_type": "field_value",
+              "target_element": "email_input",
+              "expected_value": "john.doe@example.com",
+              "assertion_description": "Verify that the email 'john.doe@example.com' is accepted and displayed correctly in the email field",
+              "is_hard_assertion": true,
+              "is_inferred": false,
+              "suggested_method_name": "verify_email_entered"
+            },
+            {
+              "assertion_number": 2,
+              "assertion_type": "no_validation_error",
+              "target_element": "email_validation_message",
+              "expected_value": "No error message displayed",
+              "assertion_description": "Verify that no validation error is displayed for the email field",
+              "is_hard_assertion": false,
+              "is_inferred": true,
+              "suggested_method_name": "verify_no_email_error"
+            }
+          ],
+          "wait_conditions": [
+            {
+              "wait_type": "explicit_wait_visible",
+              "wait_target": "email_input",
+              "suggested_timeout_seconds": 5,
+              "wait_description": "Wait for email input field to be visible and enabled",
+              "when": "before_action"
+            }
+          ],
+          "error_scenarios": [
+            {
+              "error_description": "Email field is not interactable or disabled",
+              "error_indicator": "Field is not enabled or not visible",
+              "error_type": "element_not_interactable",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Cannot enter email"
+            },
+            {
+              "error_description": "Email field shows validation error for valid email format",
+              "error_indicator": "Error message appears below field indicating invalid email",
+              "error_type": "unexpected_validation_error",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Form validation is incorrect"
+            },
+            {
+              "error_description": "Email already exists in system",
+              "error_indicator": "Error message indicating email is already registered",
+              "error_type": "duplicate_email_error",
+              "recovery_action": "use_alternative_email_then_retry",
+              "impact": "Cannot proceed with duplicate email"
+            }
+          ],
+          "dependencies": {
+            "depends_on_step": 3,
+            "dependency_type": "sequential",
+            "dependency_detail": "Last name must be entered before email in typical form flow"
+          },
+          "api_calls_implied": [
+            {
+              "api_endpoint_hint": "POST /api/validate/email or GET /api/check-email",
+              "http_method": "POST",
+              "purpose": "Email validation or duplicate check may occur on blur",
+              "is_explicit": false,
+              "is_inferred": true
+            }
+          ],
+          "step_complexity": "medium",
+          "automation_notes_for_step": "Email input with potential async validation. May need to wait for validation to complete. Ensure email is unique to avoid duplicate errors. Consider using dynamic email generation with timestamp."
+        },
+        {
+          "step_number": 5,
+          "raw_action": "Enter valid password in the Password field",
+          "raw_expected_result": "Password should be accepted and masked in the field",
+          "raw_test_data": "Test@1234",
+          "interpreted_action": "This step requires locating the password input field on the registration form, clearing any existing content, entering the test data 'Test@1234' into the field, and verifying that the password is accepted. The password should be masked (displayed as dots or asterisks) for security. The field should accept the password format and may validate password strength requirements such as minimum length, uppercase, lowercase, numbers, and special characters.",
+          "action_type": "type_text",
+          "sub_actions": [
+            {
+              "sub_action_number": 1,
+              "action": "Locate password input field",
+              "action_type": "locate_element",
+              "element_involved": "password_input",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 2,
+              "action": "Clear existing content in password field",
+              "action_type": "clear",
+              "element_involved": "password_input",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 3,
+              "action": "Type password into the field",
+              "action_type": "type",
+              "element_involved": "password_input",
+              "data_needed": "password"
+            },
+            {
+              "sub_action_number": 4,
+              "action": "Verify password is masked",
+              "action_type": "verify",
+              "element_involved": "password_input",
+              "data_needed": null
+            }
+          ],
+          "ui_elements_involved": [
+            {
+              "element_type": "password_input",
+              "element_name": "password_input",
+              "element_identifier_hint": "Password input field — likely has id='password' or name='password' or type='password' or placeholder='Password' or label 'Password'",
+              "interaction_type": "type",
+              "page_context": "RegistrationPage",
+              "is_inferred": false,
+              "required_state": "visible_and_enabled"
+            },
+            {
+              "element_type": "text_display",
+              "element_name": "password_strength_indicator",
+              "element_identifier_hint": "Password strength indicator — may show weak/medium/strong or progress bar",
+              "interaction_type": "verify_visible",
+              "page_context": "RegistrationPage",
+              "is_inferred": true,
+              "required_state": "visible"
+            }
+          ],
+          "navigation_involved": {
+            "is_navigation_step": false,
+            "from_page": null,
+            "to_page": null,
+            "navigation_method": null,
+            "url_hint": null,
+            "expected_page_indicator": null
+          },
+          "test_data_needed": [
+            {
+              "data_field_name": "password",
+              "data_type": "string",
+              "sample_value": "Test@1234",
+              "is_provided_in_test_case": true,
+              "constraints": "Must meet password requirements: minimum 8 characters, at least one uppercase, one lowercase, one number, one special character",
+              "data_source": "test_data_inline",
+              "is_sensitive": true,
+              "used_for": "User password for registration and login"
+            }
+          ],
+          "assertions": [
+            {
+              "assertion_number": 1,
+              "assertion_type": "field_type",
+              "target_element": "password_input",
+              "expected_value": "password",
+              "assertion_description": "Verify that the password field is of type password and masks the entered value",
+              "is_hard_assertion": true,
+              "is_inferred": false,
+              "suggested_method_name": "verify_password_masked"
+            },
+            {
+              "assertion_number": 2,
+              "assertion_type": "no_validation_error",
+              "target_element": "password_validation_message",
+              "expected_value": "No error message displayed",
+              "assertion_description": "Verify that no validation error is displayed for the password field",
+              "is_hard_assertion": false,
+              "is_inferred": true,
+              "suggested_method_name": "verify_no_password_error"
+            }
+          ],
+          "wait_conditions": [
+            {
+              "wait_type": "explicit_wait_visible",
+              "wait_target": "password_input",
+              "suggested_timeout_seconds": 5,
+              "wait_description": "Wait for password input field to be visible and enabled",
+              "when": "before_action"
+            }
+          ],
+          "error_scenarios": [
+            {
+              "error_description": "Password field is not interactable or disabled",
+              "error_indicator": "Field is not enabled or not visible",
+              "error_type": "element_not_interactable",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Cannot enter password"
+            },
+            {
+              "error_description": "Password does not meet strength requirements",
+              "error_indicator": "Error message indicating password is too weak or does not meet requirements",
+              "error_type": "password_validation_error",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Password requirements not met"
+            },
+            {
+              "error_description": "Password is not masked properly",
+              "error_indicator": "Password is visible in plain text instead of masked",
+              "error_type": "security_issue",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Security vulnerability"
+            }
+          ],
+          "dependencies": {
+            "depends_on_step": 4,
+            "dependency_type": "sequential",
+            "dependency_detail": "Email must be entered before password in typical form flow"
+          },
+          "api_calls_implied": [],
+          "step_complexity": "medium",
+          "automation_notes_for_step": "Password input with masking and potential strength validation. Verify field type is password. May need to check password strength indicator if present. Ensure password meets all requirements."
+        },
+        {
+          "step_number": 6,
+          "raw_action": "Enter the same password in the Confirm Password field",
+          "raw_expected_result": "Confirm password should be accepted and masked in the field",
+          "raw_test_data": "Test@1234",
+          "interpreted_action": "This step requires locating the confirm password input field on the registration form, clearing any existing content, entering the same password 'Test@1234' into the field, and verifying that the password is accepted and masked. The field should validate that the confirm password matches the password entered in the previous step. This is a critical validation to ensure users don't make typos in their password.",
+          "action_type": "type_text",
+          "sub_actions": [
+            {
+              "sub_action_number": 1,
+              "action": "Locate confirm password input field",
+              "action_type": "locate_element",
+              "element_involved": "confirm_password_input",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 2,
+              "action": "Clear existing content in confirm password field",
+              "action_type": "clear",
+              "element_involved": "confirm_password_input",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 3,
+              "action": "Type confirm password into the field",
+              "action_type": "type",
+              "element_involved": "confirm_password_input",
+              "data_needed": "confirm_password"
+            },
+            {
+              "sub_action_number": 4,
+              "action": "Verify confirm password is masked",
+              "action_type": "verify",
+              "element_involved": "confirm_password_input",
+              "data_needed": null
+            }
+          ],
+          "ui_elements_involved": [
+            {
+              "element_type": "password_input",
+              "element_name": "confirm_password_input",
+              "element_identifier_hint": "Confirm password input field — likely has id='confirmPassword' or name='confirmPassword' or type='password' or placeholder='Confirm Password' or label 'Confirm Password'",
+              "interaction_type": "type",
+              "page_context": "RegistrationPage",
+              "is_inferred": false,
+              "required_state": "visible_and_enabled"
+            }
+          ],
+          "navigation_involved": {
+            "is_navigation_step": false,
+            "from_page": null,
+            "to_page": null,
+            "navigation_method": null,
+            "url_hint": null,
+            "expected_page_indicator": null
+          },
+          "test_data_needed": [
+            {
+              "data_field_name": "confirm_password",
+              "data_type": "string",
+              "sample_value": "Test@1234",
+              "is_provided_in_test_case": true,
+              "constraints": "Must match the password entered in the password field exactly",
+              "data_source": "test_data_inline",
+              "is_sensitive": true,
+              "used_for": "Password confirmation for registration"
+            }
+          ],
+          "assertions": [
+            {
+              "assertion_number": 1,
+              "assertion_type": "field_type",
+              "target_element": "confirm_password_input",
+              "expected_value": "password",
+              "assertion_description": "Verify that the confirm password field is of type password and masks the entered value",
+              "is_hard_assertion": true,
+              "is_inferred": false,
+              "suggested_method_name": "verify_confirm_password_masked"
+            },
+            {
+              "assertion_number": 2,
+              "assertion_type": "no_validation_error",
+              "target_element": "confirm_password_validation_message",
+              "expected_value": "No error message displayed",
+              "assertion_description": "Verify that no validation error is displayed for the confirm password field indicating passwords match",
+              "is_hard_assertion": false,
+              "is_inferred": true,
+              "suggested_method_name": "verify_no_confirm_password_error"
+            }
+          ],
+          "wait_conditions": [
+            {
+              "wait_type": "explicit_wait_visible",
+              "wait_target": "confirm_password_input",
+              "suggested_timeout_seconds": 5,
+              "wait_description": "Wait for confirm password input field to be visible and enabled",
+              "when": "before_action"
+            }
+          ],
+          "error_scenarios": [
+            {
+              "error_description": "Confirm password field is not interactable or disabled",
+              "error_indicator": "Field is not enabled or not visible",
+              "error_type": "element_not_interactable",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Cannot enter confirm password"
+            },
+            {
+              "error_description": "Passwords do not match validation error",
+              "error_indicator": "Error message indicating passwords do not match",
+              "error_type": "password_mismatch_error",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Password confirmation validation failed"
+            },
+            {
+              "error_description": "Confirm password is not masked properly",
+              "error_indicator": "Password is visible in plain text instead of masked",
+              "error_type": "security_issue",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Security vulnerability"
+            }
+          ],
+          "dependencies": {
+            "depends_on_step": 5,
+            "dependency_type": "sequential",
+            "dependency_detail": "Password must be entered before confirm password, and confirm password must match password"
+          },
+          "api_calls_implied": [],
+          "step_complexity": "medium",
+          "automation_notes_for_step": "Confirm password input with matching validation. Verify field type is password. Ensure the value matches the password field. Validation may occur on blur or on submit."
+        },
+        {
+          "step_number": 7,
+          "raw_action": "Enter valid phone number in the Phone Number field",
+          "raw_expected_result": "Phone number should be accepted and displayed in the field",
+          "raw_test_data": "1234567890",
+          "interpreted_action": "This step requires locating the phone number input field on the registration form, clearing any existing content, entering the test data '1234567890' into the field, and verifying that the entered phone number is correctly displayed in the field. The field may format the phone number automatically (e.g., (123) 456-7890) or accept it as entered. The field should validate that the phone number is in a valid format and has the correct number of digits.",
+          "action_type": "type_text",
+          "sub_actions": [
+            {
+              "sub_action_number": 1,
+              "action": "Locate phone number input field",
+              "action_type": "locate_element",
+              "element_involved": "phone_number_input",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 2,
+              "action": "Clear existing content in phone number field",
+              "action_type": "clear",
+              "element_involved": "phone_number_input",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 3,
+              "action": "Type phone number into the field",
+              "action_type": "type",
+              "element_involved": "phone_number_input",
+              "data_needed": "phone_number"
+            },
+            {
+              "sub_action_number": 4,
+              "action": "Verify entered phone number is displayed",
+              "action_type": "verify",
+              "element_involved": "phone_number_input",
+              "data_needed": "phone_number"
+            }
+          ],
+          "ui_elements_involved": [
+            {
+              "element_type": "tel_input",
+              "element_name": "phone_number_input",
+              "element_identifier_hint": "Phone number input field — likely has id='phone' or name='phone' or type='tel' or placeholder='Phone Number' or label 'Phone Number'",
+              "interaction_type": "type",
+              "page_context": "RegistrationPage",
+              "is_inferred": false,
+              "required_state": "visible_and_enabled"
+            }
+          ],
+          "navigation_involved": {
+            "is_navigation_step": false,
+            "from_page": null,
+            "to_page": null,
+            "navigation_method": null,
+            "url_hint": null,
+            "expected_page_indicator": null
+          },
+          "test_data_needed": [
+            {
+              "data_field_name": "phone_number",
+              "data_type": "string",
+              "sample_value": "1234567890",
+              "is_provided_in_test_case": true,
+              "constraints": "Must be numeric, typically 10 digits for US phone numbers, may accept formatting",
+              "data_source": "test_data_inline",
+              "is_sensitive": false,
+              "used_for": "User phone number for registration and contact"
+            }
+          ],
+          "assertions": [
+            {
+              "assertion_number": 1,
+              "assertion_type": "field_value",
+              "target_element": "phone_number_input",
+              "expected_value": "1234567890",
+              "assertion_description": "Verify that the phone number '1234567890' is accepted and displayed correctly in the phone number field (may be formatted)",
+              "is_hard_assertion": true,
+              "is_inferred": false,
+              "suggested_method_name": "verify_phone_number_entered"
+            },
+            {
+              "assertion_number": 2,
+              "assertion_type": "no_validation_error",
+              "target_element": "phone_number_validation_message",
+              "expected_value": "No error message displayed",
+              "assertion_description": "Verify that no validation error is displayed for the phone number field",
+              "is_hard_assertion": false,
+              "is_inferred": true,
+              "suggested_method_name": "verify_no_phone_number_error"
+            }
+          ],
+          "wait_conditions": [
+            {
+              "wait_type": "explicit_wait_visible",
+              "wait_target": "phone_number_input",
+              "suggested_timeout_seconds": 5,
+              "wait_description": "Wait for phone number input field to be visible and enabled",
+              "when": "before_action"
+            }
+          ],
+          "error_scenarios": [
+            {
+              "error_description": "Phone number field is not interactable or disabled",
+              "error_indicator": "Field is not enabled or not visible",
+              "error_type": "element_not_interactable",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Cannot enter phone number"
+            },
+            {
+              "error_description": "Phone number field shows validation error for valid format",
+              "error_indicator": "Error message appears indicating invalid phone number",
+              "error_type": "unexpected_validation_error",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Form validation is incorrect"
+            },
+            {
+              "error_description": "Phone number field does not accept numeric input",
+              "error_indicator": "Field rejects numeric characters",
+              "error_type": "field_input_restriction",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Cannot enter phone number"
+            }
+          ],
+          "dependencies": {
+            "depends_on_step": 6,
+            "dependency_type": "sequential",
+            "dependency_detail": "Confirm password must be entered before phone number in typical form flow"
+          },
+          "api_calls_implied": [],
+          "step_complexity": "low",
+          "automation_notes_for_step": "Phone number input with potential formatting. Field may auto-format the number. Verify the entered value or formatted value is present. Handle potential formatting differences."
+        },
+        {
+          "step_number": 8,
+          "raw_action": "Click on the Register button",
+          "raw_expected_result": "Registration form should be submitted successfully",
+          "raw_test_data": null,
+          "interpreted_action": "This step requires locating the Register button on the registration form, verifying it is enabled and clickable, clicking the button to submit the registration form, and waiting for the form submission to complete. The click action triggers form validation and submission. The system should process the registration request, create a new user account, and navigate to a success page or display a success message. This is a critical action that completes the registration flow.",
+          "action_type": "click",
+          "sub_actions": [
+            {
+              "sub_action_number": 1,
+              "action": "Locate Register button",
+              "action_type": "locate_element",
+              "element_involved": "register_button",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 2,
+              "action": "Verify Register button is enabled",
+              "action_type": "verify",
+              "element_involved": "register_button",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 3,
+              "action": "Click Register button",
+              "action_type": "click",
+              "element_involved": "register_button",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 4,
+              "action": "Wait for form submission to complete",
+              "action_type": "wait",
+              "element_involved": null,
+              "data_needed": null
+            }
+          ],
+          "ui_elements_involved": [
+            {
+              "element_type": "button",
+              "element_name": "register_button",
+              "element_identifier_hint": "Register button — likely has id='registerBtn' or name='register' or text='Register' or 'Sign Up' or 'Create Account' or type='submit'",
+              "interaction_type": "click",
+              "page_context": "RegistrationPage",
+              "is_inferred": false,
+              "required_state": "visible_and_clickable"
+            },
+            {
+              "element_type": "spinner",
+              "element_name": "loading_spinner",
+              "element_identifier_hint": "Loading spinner or progress indicator that appears during form submission",
+              "interaction_type": "verify_visible",
+              "page_context": "RegistrationPage",
+              "is_inferred": true,
+              "required_state": "visible_then_hidden"
+            }
+          ],
+          "navigation_involved": {
+            "is_navigation_step": true,
+            "from_page": "RegistrationPage",
+            "to_page": "RegistrationSuccessPage",
+            "navigation_method": "form_submit",
+            "url_hint": "/registration-success or /verify-email or /welcome",
+            "expected_page_indicator": "Success message or email verification message is displayed"
+          },
+          "test_data_needed": [],
+          "assertions": [
+            {
+              "assertion_number": 1,
+              "assertion_type": "form_submitted",
+              "target_element": "registration_form",
+              "expected_value": "Form submitted successfully",
+              "assertion_description": "Verify that the registration form is submitted successfully without validation errors",
+              "is_hard_assertion": true,
+              "is_inferred": false,
+              "suggested_method_name": "verify_registration_form_submitted"
+            },
+            {
+              "assertion_number": 2,
+              "assertion_type": "no_validation_error",
+              "target_element": "form_error_message",
+              "expected_value": "No error message displayed",
+              "assertion_description": "Verify that no form-level error message is displayed after clicking Register",
+              "is_hard_assertion": true,
+              "is_inferred": true,
+              "suggested_method_name": "verify_no_form_errors"
+            }
+          ],
+          "wait_conditions": [
+            {
+              "wait_type": "explicit_wait_clickable",
+              "wait_target": "register_button",
+              "suggested_timeout_seconds": 5,
+              "wait_description": "Wait for Register button to be clickable before clicking",
+              "when": "before_action"
+            },
+            {
+              "wait_type": "explicit_wait_invisible",
+              "wait_target": "loading_spinner",
+              "suggested_timeout_seconds": 30,
+              "wait_description": "Wait for loading spinner to disappear after form submission",
+              "when": "after_action"
+            },
+            {
+              "wait_type": "page_load_wait",
+              "wait_target": "RegistrationSuccessPage",
+              "suggested_timeout_seconds": 30,
+              "wait_description": "Wait for navigation to success page after form submission",
+              "when": "after_action"
+            }
+          ],
+          "error_scenarios": [
+            {
+              "error_description": "Register button is disabled or not clickable",
+              "error_indicator": "Button has disabled attribute or is not interactable",
+              "error_type": "element_not_interactable",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Cannot submit registration form"
+            },
+            {
+              "error_description": "Form validation errors appear after clicking Register",
+              "error_indicator": "Error messages displayed for one or more fields",
+              "error_type": "form_validation_error",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Form has validation errors preventing submission"
+            },
+            {
+              "error_description": "Server error during registration submission",
+              "error_indicator": "Error message indicating server error or timeout",
+              "error_type": "server_error",
+              "recovery_action": "retry_once_then_fail",
+              "impact": "Registration cannot be completed due to server issue"
+            },
+            {
+              "error_description": "Registration fails due to duplicate email",
+              "error_indicator": "Error message indicating email already exists",
+              "error_type": "duplicate_user_error",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "User already exists with this email"
+            }
+          ],
+          "dependencies": {
+            "depends_on_step": 7,
+            "dependency_type": "sequential",
+            "dependency_detail": "All form fields must be filled before clicking Register button"
+          },
+          "api_calls_implied": [
+            {
+              "api_endpoint_hint": "POST /api/register or POST /api/users",
+              "http_method": "POST",
+              "purpose": "Submit registration data to create new user account",
+              "is_explicit": false,
+              "is_inferred": true
+            }
+          ],
+          "step_complexity": "high",
+          "automation_notes_for_step": "Critical form submission step. Ensure all fields are filled correctly before clicking. Wait for form submission to complete and handle potential loading states. Verify navigation to success page or success message display. Handle potential async validation and server-side errors."
+        },
+        {
+          "step_number": 9,
+          "raw_action": "Verify success message is displayed",
+          "raw_expected_result": "Success message 'Registration successful' should be displayed",
+          "raw_test_data": null,
+          "interpreted_action": "This step requires verifying that after successful form submission, a success message is displayed to the user confirming that the registration was successful. The message should contain text like 'Registration successful' or similar confirmation text. This verification confirms that the registration process completed successfully and the user account was created. The success message may appear as a banner, modal, or inline text on the success page.",
+          "action_type": "verify",
+          "sub_actions": [
+            {
+              "sub_action_number": 1,
+              "action": "Wait for success message to appear",
+              "action_type": "wait",
+              "element_involved": "success_message",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 2,
+              "action": "Locate success message element",
+              "action_type": "locate_element",
+              "element_involved": "success_message",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 3,
+              "action": "Verify success message is visible",
+              "action_type": "verify",
+              "element_involved": "success_message",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 4,
+              "action": "Verify success message text content",
+              "action_type": "verify",
+              "element_involved": "success_message",
+              "data_needed": "expected_success_message"
+            }
+          ],
+          "ui_elements_involved": [
+            {
+              "element_type": "text_display",
+              "element_name": "success_message",
+              "element_identifier_hint": "Success message element — likely has class='success-message' or 'alert-success' or contains text 'Registration successful' or 'Account created'",
+              "interaction_type": "verify_visible",
+              "page_context": "RegistrationSuccessPage",
+              "is_inferred": false,
+              "required_state": "visible"
+            }
+          ],
+          "navigation_involved": {
+            "is_navigation_step": false,
+            "from_page": null,
+            "to_page": null,
+            "navigation_method": null,
+            "url_hint": null,
+            "expected_page_indicator": null
+          },
+          "test_data_needed": [
+            {
+              "data_field_name": "expected_success_message",
+              "data_type": "string",
+              "sample_value": "Registration successful",
+              "is_provided_in_test_case": true,
+              "constraints": "Must match the expected success message text",
+              "data_source": "test_data_inline",
+              "is_sensitive": false,
+              "used_for": "Verification of success message text"
+            }
+          ],
+          "assertions": [
+            {
+              "assertion_number": 1,
+              "assertion_type": "element_visible",
+              "target_element": "success_message",
+              "expected_value": "visible",
+              "assertion_description": "Verify that the success message is visible on the page",
+              "is_hard_assertion": true,
+              "is_inferred": false,
+              "suggested_method_name": "verify_success_message_visible"
+            },
+            {
+              "assertion_number": 2,
+              "assertion_type": "text_content",
+              "target_element": "success_message",
+              "expected_value": "Registration successful",
+              "assertion_description": "Verify that the success message contains the text 'Registration successful'",
+              "is_hard_assertion": true,
+              "is_inferred": false,
+              "suggested_method_name": "verify_success_message_text"
+            }
+          ],
+          "wait_conditions": [
+            {
+              "wait_type": "explicit_wait_visible",
+              "wait_target": "success_message",
+              "suggested_timeout_seconds": 10,
+              "wait_description": "Wait for success message to be visible after form submission",
+              "when": "before_action"
+            }
+          ],
+          "error_scenarios": [
+            {
+              "error_description": "Success message is not displayed",
+              "error_indicator": "Success message element not found or not visible",
+              "error_type": "element_not_found",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Cannot verify registration success"
+            },
+            {
+              "error_description": "Success message text does not match expected",
+              "error_indicator": "Message text is different from expected",
+              "error_type": "text_mismatch",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Success message content is incorrect"
+            },
+            {
+              "error_description": "Error message displayed instead of success message",
+              "error_indicator": "Error message visible indicating registration failed",
+              "error_type": "registration_failure",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Registration failed"
+            }
+          ],
+          "dependencies": {
+            "depends_on_step": 8,
+            "dependency_type": "sequential",
+            "dependency_detail": "Register button must be clicked and form submitted before success message appears"
+          },
+          "api_calls_implied": [],
+          "step_complexity": "low",
+          "automation_notes_for_step": "Verification step to confirm registration success. Wait for success message to appear. Verify both visibility and text content. This is a critical assertion confirming the entire registration flow succeeded."
+        },
+        {
+          "step_number": 10,
+          "raw_action": "Verify email verification link is sent",
+          "raw_expected_result": "Email verification message should be displayed indicating email has been sent",
+          "raw_test_data": null,
+          "interpreted_action": "This step requires verifying that after successful registration, a message is displayed to the user indicating that an email verification link has been sent to their registered email address. The message should inform the user to check their email and click the verification link to activate their account. This verification confirms that the email notification system is working and the user is informed about the next step in the registration process. The actual email verification would typically be tested separately or mocked in automation.",
+          "action_type": "verify",
+          "sub_actions": [
+            {
+              "sub_action_number": 1,
+              "action": "Wait for email verification message to appear",
+              "action_type": "wait",
+              "element_involved": "email_verification_message",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 2,
+              "action": "Locate email verification message element",
+              "action_type": "locate_element",
+              "element_involved": "email_verification_message",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 3,
+              "action": "Verify email verification message is visible",
+              "action_type": "verify",
+              "element_involved": "email_verification_message",
+              "data_needed": null
+            },
+            {
+              "sub_action_number": 4,
+              "action": "Verify email verification message text content",
+              "action_type": "verify",
+              "element_involved": "email_verification_message",
+              "data_needed": "expected_email_message"
+            }
+          ],
+          "ui_elements_involved": [
+            {
+              "element_type": "text_display",
+              "element_name": "email_verification_message",
+              "element_identifier_hint": "Email verification message element — likely has class='info-message' or 'alert-info' or contains text 'verification email' or 'check your email' or 'email has been sent'",
+              "interaction_type": "verify_visible",
+              "page_context": "RegistrationSuccessPage",
+              "is_inferred": false,
+              "required_state": "visible"
+            },
+            {
+              "element_type": "icon",
+              "element_name": "email_icon",
+              "element_identifier_hint": "Email icon that may accompany the verification message",
+              "interaction_type": "verify_visible",
+              "page_context": "RegistrationSuccessPage",
+              "is_inferred": true,
+              "required_state": "visible"
+            }
+          ],
+          "navigation_involved": {
+            "is_navigation_step": false,
+            "from_page": null,
+            "to_page": null,
+            "navigation_method": null,
+            "url_hint": null,
+            "expected_page_indicator": null
+          },
+          "test_data_needed": [
+            {
+              "data_field_name": "expected_email_message",
+              "data_type": "string",
+              "sample_value": "Email verification message should be displayed indicating email has been sent",
+              "is_provided_in_test_case": true,
+              "constraints": "Must contain text indicating email verification link was sent",
+              "data_source": "test_data_inline",
+              "is_sensitive": false,
+              "used_for": "Verification of email verification message text"
+            }
+          ],
+          "assertions": [
+            {
+              "assertion_number": 1,
+              "assertion_type": "element_visible",
+              "target_element": "email_verification_message",
+              "expected_value": "visible",
+              "assertion_description": "Verify that the email verification message is visible on the page",
+              "is_hard_assertion": true,
+              "is_inferred": false,
+              "suggested_method_name": "verify_email_verification_message_visible"
+            },
+            {
+              "assertion_number": 2,
+              "assertion_type": "text_contains",
+              "target_element": "email_verification_message",
+              "expected_value": "email has been sent",
+              "assertion_description": "Verify that the email verification message indicates that an email has been sent to the user",
+              "is_hard_assertion": true,
+              "is_inferred": false,
+              "suggested_method_name": "verify_email_verification_message_text"
+            }
+          ],
+          "wait_conditions": [
+            {
+              "wait_type": "explicit_wait_visible",
+              "wait_target": "email_verification_message",
+              "suggested_timeout_seconds": 10,
+              "wait_description": "Wait for email verification message to be visible after registration success",
+              "when": "before_action"
+            }
+          ],
+          "error_scenarios": [
+            {
+              "error_description": "Email verification message is not displayed",
+              "error_indicator": "Email verification message element not found or not visible",
+              "error_type": "element_not_found",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Cannot verify email notification was sent"
+            },
+            {
+              "error_description": "Email verification message text does not indicate email was sent",
+              "error_indicator": "Message text does not contain expected content about email being sent",
+              "error_type": "text_mismatch",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Email verification message content is incorrect"
+            },
+            {
+              "error_description": "Email sending failed",
+              "error_indicator": "Error message indicating email could not be sent",
+              "error_type": "email_sending_failure",
+              "recovery_action": "fail_with_screenshot",
+              "impact": "Email verification system is not working"
+            }
+          ],
+          "dependencies": {
+            "depends_on_step": 9,
+            "dependency_type": "sequential",
+            "dependency_detail": "Success message must be displayed before email verification message"
+          },
+          "api_calls_implied": [
+            {
+              "api_endpoint_hint": "POST /api/send-verification-email",
+              "http_method": "POST",
+              "purpose": "Trigger sending of verification email to user",
+              "is_explicit": false,
+              "is_inferred": true
+            }
+          ],
+          "step_complexity": "medium",
+          "automation_notes_for_step": "Verification step to confirm email notification system is working. Wait for email verification message to appear. Verify both visibility and text content indicating email was sent. In full automation, may need to integrate with email testing service to verify actual email receipt, but UI message verification is sufficient for this test case."
+        }
+      ],
+      "postconditions": [
+        {
+          "postcondition_number": 1,
+          "raw_text": null,
+          "interpreted_meaning": "After test execution, the newly created user account should be cleaned up from the database to avoid test data pollution. The test email address should be available for future test runs. Browser session should be closed and all cookies/cache cleared.",
+          "cleanup_components_needed": [
+            {
+              "component_type": "api_helper",
+              "component_name_suggestion": "delete_user_by_email",
+              "reason": "Need API method to delete the test user account created during registration"
+            },
+            {
+              "component_type": "utility_function",
+              "component_name_suggestion": "clear_browser_data",
+              "reason": "Need to clear browser cookies and cache after test"
+            },
+            {
+              "component_type": "utility_function",
+              "component_name_suggestion": "close_browser",
+              "reason": "Need to close browser session after test completion"
+            }
+          ]
+        }
+      ],
+      "test_data_requirements": [
+        {
+          "data_field": "first_name",
+          "data_type": "string",
+          "used_in_steps": [
+            2
+          ],
+          "sample_value": "John",
+          "is_provided": true,
+          "generation_strategy": "static_value",
+          "constraints": "Must be alphabetic characters, typically 1-50 characters",
+          "is_sensitive": false,
+          "category": "user_profile"
+        },
+        {
+          "data_field": "last_name",
+          "data_type": "string",
+          "used_in_steps": [
+            3
+          ],
+          "sample_value": "Doe",
+          "is_provided": true,
+          "generation_strategy": "static_value",
+          "constraints": "Must be alphabetic characters, typically 1-50 characters",
+          "is_sensitive": false,
+          "category": "user_profile"
+        },
+        {
+          "data_field": "email",
+          "data_type": "email",
+          "used_in_steps": [
+            4
+          ],
+          "sample_value": "john.doe@example.com",
+          "is_provided": true,
+          "generation_strategy": "dynamic_with_timestamp",
+          "constraints": "Must be a valid email format (user@domain.com), unique in the system",
+          "is_sensitive": true,
+          "category": "authentication"
+        },
+        {
+          "data_field": "password",
+          "data_type": "string",
+          "used_in_steps": [
+            5,
+            6
+          ],
+          "sample_value": "Test@1234",
+          "is_provided": true,
+          "generation_strategy": "static_value",
+          "constraints": "Must meet password requirements: minimum 8 characters, at least one uppercase, one lowercase, one number, one special character",
+          "is_sensitive": true,
+          "category": "authentication"
+        },
+        {
+          "data_field": "confirm_password",
+          "data_type": "string",
+          "used_in_steps": [
+            6
+          ],
+          "sample_value": "Test@1234",
+          "is_provided": true,
+          "generation_strategy": "static_value",
+          "constraints": "Must match the password entered in the password field exactly",
+          "is_sensitive": true,
+          "category": "authentication"
+        },
+        {
+          "data_field": "phone_number",
+          "data_type": "string",
+          "used_in_steps": [
+            7
+          ],
+          "sample_value": "1234567890",
+          "is_provided": true,
+          "generation_strategy": "static_value",
+          "constraints": "Must be numeric, typically 10 digits for US phone numbers, may accept formatting",
+          "is_sensitive": false,
+          "category": "user_profile"
+        }
+      ],
+      "pages_identified": [
+        {
+          "page_name": "RegistrationPage",
+          "page_name_pascal_case": "RegistrationPage",
+          "page_url_hint": "/register or /signup or /create-account",
+          "appears_in_steps": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "elements_on_this_page": [
+            {
+              "element_name": "registration_form",
+              "element_type": "form"
+            },
+            {
+              "element_name": "registration_page_title",
+              "element_type": "heading"
+            },
+            {
+              "element_name": "first_name_input",
+              "element_type": "text_input"
+            },
+            {
+              "element_name": "last_name_input",
+              "element_type": "text_input"
+            },
+            {
+              "element_name": "email_input",
+              "element_type": "email_input"
+            },
+            {
+              "element_name": "password_input",
+              "element_type": "password_input"
+            },
+            {
+              "element_name": "password_strength_indicator",
+              "element_type": "text_display"
+            },
+            {
+              "element_name": "confirm_password_input",
+              "element_type": "password_input"
+            },
+            {
+              "element_name": "phone_number_input",
+              "element_type": "tel_input"
+            },
+            {
+              "element_name": "register_button",
+              "element_type": "button"
+            },
+            {
+              "element_name": "loading_spinner",
+              "element_type": "spinner"
+            },
+            {
+              "element_name": "first_name_validation_message",
+              "element_type": "text_display"
+            },
+            {
+              "element_name": "last_name_validation_message",
+              "element_type": "text_display"
+            },
+            {
+              "element_name": "email_validation_message",
+              "element_type": "text_display"
+            },
+            {
+              "element_name": "password_validation_message",
+              "element_type": "text_display"
+            },
+            {
+              "element_name": "confirm_password_validation_message",
+              "element_type": "text_display"
+            },
+            {
+              "element_name": "phone_number_validation_message",
+              "element_type": "text_display"
+            },
+            {
+              "element_name": "form_error_message",
+              "element_type": "text_display"
+            }
+          ],
+          "actions_on_this_page": [
+            "enter_first_name",
+            "enter_last_name",
+            "enter_email",
+            "enter_password",
+            "enter_confirm_password",
+            "enter_phone_number",
+            "click_register_button",
+            "verify_registration_form_visible",
+            "verify_field_validation_errors"
+          ],
+          "navigates_to": [
+            "RegistrationSuccessPage"
+          ],
+          "navigated_from": [
+            "Direct URL"
+          ],
+          "is_entry_point": true
+        },
+        {
+          "page_name": "RegistrationSuccessPage",
+          "page_name_pascal_case": "RegistrationSuccessPage",
+          "page_url_hint": "/registration-success or /verify-email or /welcome",
+          "appears_in_steps": [
+            9,
+            10
+          ],
+          "elements_on_this_page": [
+            {
+              "element_name": "success_message",
+              "element_type": "text_display"
+            },
+            {
+              "element_name": "email_verification_message",
+              "element_type": "text_display"
+            },
+            {
+              "element_name": "email_icon",
+              "element_type": "icon"
+            }
+          ],
+          "actions_on_this_page": [
+            "verify_success_message_displayed",
+            "verify_email_verification_message_displayed"
+          ],
+          "navigates_to": [],
+          "navigated_from": [
+            "RegistrationPage"
+          ],
+          "is_entry_point": false
+        },
+        {
+          "page_name": "EmailVerificationPage",
+          "page_name_pascal_case": "EmailVerificationPage",
+          "page_url_hint": "/verify-email/{token}",
+          "appears_in_steps": [],
+          "elements_on_this_page": [],
+          "actions_on_this_page": [],
+          "navigates_to": [],
+          "navigated_from": [
+            "Email Link"
+          ],
+          "is_entry_point": false
+        },
+        {
+          "page_name": "LoginPage",
+          "page_name_pascal_case": "LoginPage",
+          "page_url_hint": "/login",
+          "appears_in_steps": [],
+          "elements_on_this_page": [],
+          "actions_on_this_page": [],
+          "navigates_to": [],
+          "navigated_from": [
+            "RegistrationSuccessPage"
+          ],
+          "is_entry_point": false
+        }
+      ],
+      "flow_analysis": {
+        "flow_sequence": [
+          {
+            "order": 1,
+            "page": "RegistrationPage",
+            "action_summary": "Navigate to registration page and verify page loads",
+            "steps_involved": [
+              1
+            ]
+          },
+          {
+            "order": 2,
+            "page": "RegistrationPage",
+            "action_summary": "Fill in user profile information (first name, last name)",
+            "steps_involved": [
+              2,
+              3
+            ]
+          },
+          {
+            "order": 3,
+            "page": "RegistrationPage",
+            "action_summary": "Fill in authentication credentials (email, password, confirm password)",
+            "steps_involved": [
+              4,
+              5,
+              6
+            ]
+          },
+          {
+            "order": 4,
+            "page": "RegistrationPage",
+            "action_summary": "Fill in contact information (phone number)",
+            "steps_involved": [
+              7
+            ]
+          },
+          {
+            "order": 5,
+            "page": "RegistrationPage",
+            "action_summary": "Submit registration form",
+            "steps_involved": [
+              8
+            ]
+          },
+          {
+            "order": 6,
+            "page": "RegistrationSuccessPage",
+            "action_summary": "Verify registration success and email verification notification",
+            "steps_involved": [
+              9,
+              10
+            ]
+          }
+        ],
+        "critical_path": "RegistrationPage → Fill Form Fields → Click Register → RegistrationSuccessPage → Verify Success Message → Verify Email Verification Message",
+        "alternate_paths": [
+          {
+            "path_name": "Invalid email format path",
+            "description": "If email format is invalid, error message is shown on RegistrationPage and form is not submitted",
+            "steps_involved": [],
+            "is_explicitly_in_test_case": false,
+            "is_inferred": true
+          },
+          {
+            "path_name": "Password mismatch path",
+            "description": "If password and confirm password do not match, error message is shown and form is not submitted",
+            "steps_involved": [],
+            "is_explicitly_in_test_case": false,
+            "is_inferred": true
+          },
+          {
+            "path_name": "Duplicate email path",
+            "description": "If email already exists in system, error message is shown and registration fails",
+            "steps_involved": [],
+            "is_explicitly_in_test_case": false,
+            "is_inferred": true
+          }
+        ],
+        "error_paths": [
+          {
+            "path_name": "Form validation failure",
+            "trigger": "Invalid data in one or more fields",
+            "expected_behavior": "Validation error messages displayed, form not submitted",
+            "is_explicitly_in_test_case": false,
+            "is_inferred": true
+          },
+          {
+            "path_name": "Server error during registration",
+            "trigger": "Backend service unavailable or error",
+            "expected_behavior": "Error message displayed, user remains on registration page",
+            "is_explicitly_in_test_case": false,
+            "is_inferred": true
+          },
+          {
+            "path_name": "Email sending failure",
+            "trigger": "Email service unavailable",
+            "expected_behavior": "Registration succeeds but email verification notification may show error",
+            "is_explicitly_in_test_case": false,
+            "is_inferred": true
+          }
+        ],
+        "setup_requirements": [
+          "Application must be accessible via URL",
+          "Browser must be initialized",
+          "Registration page must be functional",
+          "Email service must be available for verification emails",
+          "Database must be accessible for user creation"
+        ],
+        "teardown_requirements": [
+          "Delete test user account from database",
+          "Clear browser cookies and cache",
+          "Close browser session"
+        ],
+        "total_page_transitions": 1,
+        "estimated_execution_time_seconds": 45
+      }
+    }
+  ],
+  "component_needs_summary": {
+    "page_objects_needed": [
+      {
+        "page_name": "RegistrationPage",
+        "purpose": "Represents the user registration page with all form fields and registration-related elements and actions",
+        "elements_count": 18,
+        "actions_count": 9,
+        "priority": "critical",
+        "used_in_test_cases": [
+          "TC_007"
+        ]
+      },
+      {
+        "page_name": "RegistrationSuccessPage",
+        "purpose": "Represents the registration success page displaying success and email verification messages",
+        "elements_count": 3,
+        "actions_count": 2,
+        "priority": "critical",
+        "used_in_test_cases": [
+          "TC_007"
+        ]
+      },
+      {
+        "page_name": "EmailVerificationPage",
+        "purpose": "Represents the email verification page accessed via email link (inferred for future test cases)",
+        "elements_count": 0,
+        "actions_count": 0,
+        "priority": "medium",
+        "used_in_test_cases": []
+      },
+      {
+        "page_name": "LoginPage",
+        "purpose": "Represents the login page that user may navigate to after registration (inferred for future test cases)",
+        "elements_count": 0,
+        "actions_count": 0,
+        "priority": "medium",
+        "used_in_test_cases": []
+      }
+    ],
+    "locators_needed": [
+      {
+        "element_name": "registration_form",
+        "element_type": "form",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "id",
+        "locator_value_hint": "registrationForm or registration-form or signupForm",
+        "interaction_types": [
+          "verify_visible"
+        ],
+        "used_in_steps": [
+          1,
+          8
+        ],
+        "priority": "critical"
+      },
+      {
+        "element_name": "registration_page_title",
+        "element_type": "heading",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "css_selector",
+        "locator_value_hint": "h1 or h2 containing text 'Register' or 'Sign Up' or 'Create Account'",
+        "interaction_types": [
+          "verify_visible"
+        ],
+        "used_in_steps": [
+          1
+        ],
+        "priority": "medium"
+      },
+      {
+        "element_name": "first_name_input",
+        "element_type": "text_input",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "id",
+        "locator_value_hint": "firstName or first-name or firstname",
+        "interaction_types": [
+          "type",
+          "clear",
+          "verify_value"
+        ],
+        "used_in_steps": [
+          2
+        ],
+        "priority": "critical"
+      },
+      {
+        "element_name": "last_name_input",
+        "element_type": "text_input",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "id",
+        "locator_value_hint": "lastName or last-name or lastname",
+        "interaction_types": [
+          "type",
+          "clear",
+          "verify_value"
+        ],
+        "used_in_steps": [
+          3
+        ],
+        "priority": "critical"
+      },
+      {
+        "element_name": "email_input",
+        "element_type": "email_input",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "id",
+        "locator_value_hint": "email or emailAddress or email-input",
+        "interaction_types": [
+          "type",
+          "clear",
+          "verify_value"
+        ],
+        "used_in_steps": [
+          4
+        ],
+        "priority": "critical"
+      },
+      {
+        "element_name": "password_input",
+        "element_type": "password_input",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "id",
+        "locator_value_hint": "password or pwd or password-input",
+        "interaction_types": [
+          "type",
+          "clear",
+          "verify_type"
+        ],
+        "used_in_steps": [
+          5
+        ],
+        "priority": "critical"
+      },
+      {
+        "element_name": "password_strength_indicator",
+        "element_type": "text_display",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "css_selector",
+        "locator_value_hint": ".password-strength or #passwordStrength or element showing weak/medium/strong",
+        "interaction_types": [
+          "verify_visible"
+        ],
+        "used_in_steps": [
+          5
+        ],
+        "priority": "low"
+      },
+      {
+        "element_name": "confirm_password_input",
+        "element_type": "password_input",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "id",
+        "locator_value_hint": "confirmPassword or confirm-password or passwordConfirm",
+        "interaction_types": [
+          "type",
+          "clear",
+          "verify_type"
+        ],
+        "used_in_steps": [
+          6
+        ],
+        "priority": "critical"
+      },
+      {
+        "element_name": "phone_number_input",
+        "element_type": "tel_input",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "id",
+        "locator_value_hint": "phone or phoneNumber or phone-number or tel",
+        "interaction_types": [
+          "type",
+          "clear",
+          "verify_value"
+        ],
+        "used_in_steps": [
+          7
+        ],
+        "priority": "critical"
+      },
+      {
+        "element_name": "register_button",
+        "element_type": "button",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "css_selector",
+        "locator_value_hint": "button with text 'Register' or 'Sign Up' or 'Create Account' or type='submit'",
+        "interaction_types": [
+          "click",
+          "verify_enabled"
+        ],
+        "used_in_steps": [
+          8
+        ],
+        "priority": "critical"
+      },
+      {
+        "element_name": "loading_spinner",
+        "element_type": "spinner",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "css_selector",
+        "locator_value_hint": ".spinner or .loading or #loadingSpinner",
+        "interaction_types": [
+          "verify_visible",
+          "verify_invisible"
+        ],
+        "used_in_steps": [
+          8
+        ],
+        "priority": "medium"
+      },
+      {
+        "element_name": "first_name_validation_message",
+        "element_type": "text_display",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "css_selector",
+        "locator_value_hint": "error message near first name field, likely .error or .validation-error",
+        "interaction_types": [
+          "verify_not_visible",
+          "verify_text"
+        ],
+        "used_in_steps": [
+          2
+        ],
+        "priority": "medium"
+      },
+      {
+        "element_name": "last_name_validation_message",
+        "element_type": "text_display",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "css_selector",
+        "locator_value_hint": "error message near last name field, likely .error or .validation-error",
+        "interaction_types": [
+          "verify_not_visible",
+          "verify_text"
+        ],
+        "used_in_steps": [
+          3
+        ],
+        "priority": "medium"
+      },
+      {
+        "element_name": "email_validation_message",
+        "element_type": "text_display",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "css_selector",
+        "locator_value_hint": "error message near email field, likely .error or .validation-error",
+        "interaction_types": [
+          "verify_not_visible",
+          "verify_text"
+        ],
+        "used_in_steps": [
+          4
+        ],
+        "priority": "medium"
+      },
+      {
+        "element_name": "password_validation_message",
+        "element_type": "text_display",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "css_selector",
+        "locator_value_hint": "error message near password field, likely .error or .validation-error",
+        "interaction_types": [
+          "verify_not_visible",
+          "verify_text"
+        ],
+        "used_in_steps": [
+          5
+        ],
+        "priority": "medium"
+      },
+      {
+        "element_name": "confirm_password_validation_message",
+        "element_type": "text_display",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "css_selector",
+        "locator_value_hint": "error message near confirm password field, likely .error or .validation-error",
+        "interaction_types": [
+          "verify_not_visible",
+          "verify_text"
+        ],
+        "used_in_steps": [
+          6
+        ],
+        "priority": "medium"
+      },
+      {
+        "element_name": "phone_number_validation_message",
+        "element_type": "text_display",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "css_selector",
+        "locator_value_hint": "error message near phone number field, likely .error or .validation-error",
+        "interaction_types": [
+          "verify_not_visible",
+          "verify_text"
+        ],
+        "used_in_steps": [
+          7
+        ],
+        "priority": "medium"
+      },
+      {
+        "element_name": "form_error_message",
+        "element_type": "text_display",
+        "page": "RegistrationPage",
+        "locator_strategy_suggestion": "css_selector",
+        "locator_value_hint": "form-level error message, likely .form-error or .alert-danger",
+        "interaction_types": [
+          "verify_not_visible",
+          "verify_text"
+        ],
+        "used_in_steps": [
+          8
+        ],
+        "priority": "high"
+      },
+      {
+        "element_name": "success_message",
+        "element_type": "text_display",
+        "page": "RegistrationSuccessPage",
+        "locator_strategy_suggestion": "css_selector",
+        "locator_value_hint": ".success-message or .alert-success or element containing 'Registration successful'",
+        "interaction_types": [
+          "verify_visible",
+          "verify_text"
+        ],
+        "used_in_steps": [
+          9
+        ],
+        "priority": "critical"
+      },
+      {
+        "element_name": "email_verification_message",
+        "element_type": "text_display",
+        "page": "RegistrationSuccessPage",
+        "locator_strategy_suggestion": "css_selector",
+        "locator_value_hint": ".info-message or .alert-info or element containing 'verification email' or 'check your email'",
+        "interaction_types": [
+          "verify_visible",
+          "verify_text"
+        ],
+        "used_in_steps": [
+          10
+        ],
+        "priority": "critical"
+      },
+      {
+        "element_name": "email_icon",
+        "element_type": "icon",
+        "page": "RegistrationSuccessPage",
+        "locator_strategy_suggestion": "css_selector",
+        "locator_value_hint": ".email-icon or i.fa-envelope or svg with email icon",
+        "interaction_types": [
+          "verify_visible"
+        ],
+        "used_in_steps": [
+          10
+        ],
+        "priority": "low"
+      }
+    ],
+    "action_methods_needed": [
+      {
+        "method_name_suggestion": "navigate_to_registration_page",
+        "action_type": "navigate_to_url",
+        "page": "RegistrationPage",
+        "parameters": [],
+        "description": "Navigates to the registration page URL and waits for page to load",
+        "used_in_steps": [
+          1
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "enter_first_name",
+        "action_type": "type_text",
+        "page": "RegistrationPage",
+        "parameters": [
+          "first_name: string"
+        ],
+        "description": "Clears and enters first name in the first name input field",
+        "used_in_steps": [
+          2
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "enter_last_name",
+        "action_type": "type_text",
+        "page": "RegistrationPage",
+        "parameters": [
+          "last_name: string"
+        ],
+        "description": "Clears and enters last name in the last name input field",
+        "used_in_steps": [
+          3
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "enter_email",
+        "action_type": "type_text",
+        "page": "RegistrationPage",
+        "parameters": [
+          "email: string"
+        ],
+        "description": "Clears and enters email address in the email input field",
+        "used_in_steps": [
+          4
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "enter_password",
+        "action_type": "type_text",
+        "page": "RegistrationPage",
+        "parameters": [
+          "password: string"
+        ],
+        "description": "Clears and enters password in the password input field",
+        "used_in_steps": [
+          5
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "enter_confirm_password",
+        "action_type": "type_text",
+        "page": "RegistrationPage",
+        "parameters": [
+          "confirm_password: string"
+        ],
+        "description": "Clears and enters confirm password in the confirm password input field",
+        "used_in_steps": [
+          6
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "enter_phone_number",
+        "action_type": "type_text",
+        "page": "RegistrationPage",
+        "parameters": [
+          "phone_number: string"
+        ],
+        "description": "Clears and enters phone number in the phone number input field",
+        "used_in_steps": [
+          7
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "click_register_button",
+        "action_type": "click",
+        "page": "RegistrationPage",
+        "parameters": [],
+        "description": "Clicks the register button to submit the registration form",
+        "used_in_steps": [
+          8
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "fill_registration_form",
+        "action_type": "multi_action_composite",
+        "page": "RegistrationPage",
+        "parameters": [
+          "first_name: string",
+          "last_name: string",
+          "email: string",
+          "password: string",
+          "confirm_password: string",
+          "phone_number: string"
+        ],
+        "description": "Composite method that fills all registration form fields with provided data",
+        "used_in_steps": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "priority": "high"
+      },
+      {
+        "method_name_suggestion": "submit_registration",
+        "action_type": "multi_action_composite",
+        "page": "RegistrationPage",
+        "parameters": [
+          "first_name: string",
+          "last_name: string",
+          "email: string",
+          "password: string",
+          "confirm_password: string",
+          "phone_number: string"
+        ],
+        "description": "Composite method that fills registration form and clicks register button",
+        "used_in_steps": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "priority": "high"
+      },
+      {
+        "method_name_suggestion": "wait_for_registration_form_load",
+        "action_type": "wait",
+        "page": "RegistrationPage",
+        "parameters": [
+          "timeout: int"
+        ],
+        "description": "Waits for registration form to be fully loaded and visible",
+        "used_in_steps": [
+          1
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "wait_for_form_submission",
+        "action_type": "wait",
+        "page": "RegistrationPage",
+        "parameters": [
+          "timeout: int"
+        ],
+        "description": "Waits for form submission to complete and loading spinner to disappear",
+        "used_in_steps": [
+          8
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "wait_for_success_page_load",
+        "action_type": "wait",
+        "page": "RegistrationSuccessPage",
+        "parameters": [
+          "timeout: int"
+        ],
+        "description": "Waits for registration success page to load after form submission",
+        "used_in_steps": [
+          8,
+          9
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "get_field_value",
+        "action_type": "get_attribute",
+        "page": "RegistrationPage",
+        "parameters": [
+          "field_name: string"
+        ],
+        "description": "Gets the current value of a specified form field",
+        "used_in_steps": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "priority": "medium"
+      },
+      {
+        "method_name_suggestion": "is_field_enabled",
+        "action_type": "verify_state",
+        "page": "RegistrationPage",
+        "parameters": [
+          "field_name: string"
+        ],
+        "description": "Checks if a specified form field is enabled and interactable",
+        "used_in_steps": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "priority": "medium"
+      }
+    ],
+    "assertion_methods_needed": [
+      {
+        "method_name_suggestion": "verify_registration_page_loaded",
+        "assertion_type": "page_loaded",
+        "page": "RegistrationPage",
+        "parameters": [],
+        "description": "Verifies that the registration page has loaded successfully by checking for the presence of the registration form",
+        "used_in_steps": [
+          1
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "verify_registration_form_visible",
+        "assertion_type": "element_visible",
+        "page": "RegistrationPage",
+        "parameters": [],
+        "description": "Verifies that the registration form is visible on the page",
+        "used_in_steps": [
+          1
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "verify_field_value",
+        "assertion_type": "field_value",
+        "page": "RegistrationPage",
+        "parameters": [
+          "field_name: string",
+          "expected_value: string"
+        ],
+        "description": "Verifies that a form field contains the expected value",
+        "used_in_steps": [
+          2,
+          3,
+          4,
+          7
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "verify_password_masked",
+        "assertion_type": "field_type",
+        "page": "RegistrationPage",
+        "parameters": [],
+        "description": "Verifies that the password field is of type password and masks the entered value",
+        "used_in_steps": [
+          5,
+          6
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "verify_no_validation_error",
+        "assertion_type": "no_validation_error",
+        "page": "RegistrationPage",
+        "parameters": [
+          "field_name: string"
+        ],
+        "description": "Verifies that no validation error message is displayed for a specified field",
+        "used_in_steps": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "priority": "high"
+      },
+      {
+        "method_name_suggestion": "verify_registration_form_submitted",
+        "assertion_type": "form_submitted",
+        "page": "RegistrationPage",
+        "parameters": [],
+        "description": "Verifies that the registration form was submitted successfully without errors",
+        "used_in_steps": [
+          8
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "verify_no_form_errors",
+        "assertion_type": "no_validation_error",
+        "page": "RegistrationPage",
+        "parameters": [],
+        "description": "Verifies that no form-level error messages are displayed",
+        "used_in_steps": [
+          8
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "verify_success_message_visible",
+        "assertion_type": "element_visible",
+        "page": "RegistrationSuccessPage",
+        "parameters": [],
+        "description": "Verifies that the success message is visible on the registration success page",
+        "used_in_steps": [
+          9
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "verify_success_message_text",
+        "assertion_type": "text_content",
+        "page": "RegistrationSuccessPage",
+        "parameters": [
+          "expected_text: string"
+        ],
+        "description": "Verifies that the success message contains the expected text",
+        "used_in_steps": [
+          9
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "verify_email_verification_message_visible",
+        "assertion_type": "element_visible",
+        "page": "RegistrationSuccessPage",
+        "parameters": [],
+        "description": "Verifies that the email verification message is visible on the registration success page",
+        "used_in_steps": [
+          10
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "verify_email_verification_message_text",
+        "assertion_type": "text_contains",
+        "page": "RegistrationSuccessPage",
+        "parameters": [
+          "expected_text: string"
+        ],
+        "description": "Verifies that the email verification message contains text indicating email was sent",
+        "used_in_steps": [
+          10
+        ],
+        "priority": "critical"
+      },
+      {
+        "method_name_suggestion": "verify_element_visible",
+        "assertion_type": "element_visible",
+        "page": "Generic",
+        "parameters": [
+          "element_name: string"
+        ],
+        "description": "Generic method to verify any element is visible on the page",
+        "used_in_steps": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          9,
+          10
+        ],
+        "priority": "high"
+      }
+    ],
+    "utility_functions_needed": [
+      {
+        "function_name_suggestion": "wait_for_page_load",
+        "purpose": "Generic utility to wait for a page to fully load",
+        "parameters": [
+          "timeout: int"
+        ],
+        "category": "wait_helper",
+        "priority": "critical"
+      },
+      {
+        "function_name_suggestion": "wait_for_element_visible",
+        "purpose": "Waits for a specific element to be visible on the page",
+        "parameters": [
+          "element: WebElement",
+          "timeout: int"
+        ],
+        "category": "wait_helper",
+        "priority": "critical"
+      },
+      {
+        "function_name_suggestion": "wait_for_element_clickable",
+        "purpose": "Waits for a specific element to be clickable",
+        "parameters": [
+          "element: WebElement",
+          "timeout: int"
+        ],
+        "category": "wait_helper",
+        "priority": "critical"
+      },
+      {
+        "function_name_suggestion": "wait_for_element_invisible",
+        "purpose": "Waits for a specific element to become invisible or disappear",
+        "parameters": [
+          "element: WebElement",
+          "timeout: int"
+        ],
+        "category": "wait_helper",
+        "priority": "high"
+      },
+      {
+        "function_name_suggestion": "take_screenshot_on_failure",
+        "purpose": "Captures screenshot when a test step fails for debugging",
+        "parameters": [
+          "test_name: string",
+          "step_number: int"
+        ],
+        "category": "debug_helper",
+        "priority": "high"
+      },
+      {
+        "function_name_suggestion": "generate_unique_email",
+        "purpose": "Generates a unique email address using timestamp to avoid duplicates",
+        "parameters": [
+          "base_email: string"
+        ],
+        "category": "data_helper",
+        "priority": "critical"
+      },
+      {
+        "function_name_suggestion": "generate_timestamp",
+        "purpose": "Generates a timestamp string for unique naming",
+        "parameters": [],
+        "category": "data_helper",
+        "priority": "medium"
+      },
+      {
+        "function_name_suggestion": "clear_browser_data",
+        "purpose": "Clears browser cookies, cache, and local storage",
+        "parameters": [],
+        "category": "cleanup_helper",
+        "priority": "high"
+      },
+      {
+        "function_name_suggestion": "initialize_browser",
+        "purpose": "Initializes browser session with required configurations",
+        "parameters": [
+          "browser_type: string"
+        ],
+        "category": "setup_helper",
+        "priority": "critical"
+      },
+      {
+        "function_name_suggestion": "close_browser",
+        "purpose": "Closes browser session and cleans up resources",
+        "parameters": [],
+        "category": "cleanup_helper",
+        "priority": "critical"
+      },
+      {
+        "function_name_suggestion": "verify_application_accessible",
+        "purpose": "Verifies that the application is accessible and responding",
+        "parameters": [
+          "url: string"
+        ],
+        "category": "validation_helper",
+        "priority": "high"
+      }
+    ],
+    "api_helpers_needed": [
+      {
+        "function_name_suggestion": "delete_user_by_email",
+        "purpose": "Deletes a user account from the database using email address for test cleanup",
+        "http_method": "DELETE",
+        "endpoint_hint": "/api/users/{email} or /api/users?email={email}",
+        "parameters": [
+          "email: string"
+        ],
+        "category": "data_cleanup",
+        "priority": "critical",
+        "is_inferred": true
+      },
+      {
+        "function_name_suggestion": "verify_user_exists",
+        "purpose": "Checks if a user with given email exists in the system",
+        "http_method": "GET",
+        "endpoint_hint": "/api/users/check?email={email}",
+        "parameters": [
+          "email: string"
+        ],
+        "category": "data_validation",
+        "priority": "medium",
+        "is_inferred": true
+      },
+      {
+        "function_name_suggestion": "validate_email_format",
+        "purpose": "Validates email format through API before registration",
+        "http_method": "POST",
+        "endpoint_hint": "/api/validate/email",
+        "parameters": [
+          "email: string"
+        ],
+        "category": "validation",
+        "priority": "low",
+        "is_inferred": true
+      },
+      {
+        "function_name_suggestion": "get_verification_email",
+        "purpose": "Retrieves verification email from test email service for verification",
+        "http_method": "GET",
+        "endpoint_hint": "/api/test-emails?recipient={email}",
+        "parameters": [
+          "email: string"
+        ],
+        "category": "email_testing",
+        "priority": "medium",
+        "is_inferred": true
+      }
+    ],
+    "test_data_setup_needed": [
+      {
+        "setup_name": "unique_registration_data",
+        "purpose": "Generate unique user registration data including email with timestamp to avoid duplicates",
+        "data_fields": [
+          "first_name",
+          "last_name",
+          "email",
+          "password",
+          "confirm_password",
+          "phone_number"
+        ],
+        "setup_method": "dynamic_generation_with_timestamp",
+        "priority": "critical",
+        "used_in_test_cases": [
+          "TC_007"
+        ]
+      },
+      {
+        "setup_name": "valid_password",
+        "purpose": "Provide a valid password that meets all password requirements",
+        "data_fields": [
+          "password",
+          "confirm_password"
+        ],
+        "setup_method": "static_value",
+        "priority": "critical",
+        "used_in_test_cases": [
+          "TC_007"
+        ]
+      },
+      {
+        "setup_name": "registration_page_url",
+        "purpose": "Provide the registration page URL from environment configuration",
+        "data_fields": [
+          "registration_page_url"
+        ],
+        "setup_method": "environment_config",
+        "priority": "critical",
+        "used_in_test_cases": [
+          "TC_007"
+        ]
+      }
+    ],
+    "configuration_needed": [
+      {
+        "config_key": "base_url",
+        "purpose": "Base URL of the application under test",
+        "sample_value": "https://app.example.com",
+        "config_source": "environment_config",
+        "priority": "critical"
+      },
+      {
+        "config_key": "registration_page_path",
+        "purpose": "Path to the registration page relative to base URL",
+        "sample_value": "/register",
+        "config_source": "environment_config",
+        "priority": "critical"
+      },
+      {
+        "config_key": "default_timeout",
+        "purpose": "Default timeout for waits in seconds",
+        "sample_value": "30",
+        "config_source": "environment_config",
+        "priority": "high"
+      },
+      {
+        "config_key": "page_load_timeout",
+        "purpose": "Timeout for page load operations in seconds",
+        "sample_value": "30",
+        "config_source": "environment_config",
+        "priority": "high"
+      },
+      {
+        "config_key": "element_wait_timeout",
+        "purpose": "Timeout for element visibility waits in seconds",
+        "sample_value": "10",
+        "config_source": "environment_config",
+        "priority": "high"
+      },
+      {
+        "config_key": "browser",
+        "purpose": "Browser to run tests on",
+        "sample_value": "chrome",
+        "config_source": "environment_config",
+        "priority": "high"
+      },
+      {
+        "config_key": "headless_mode",
+        "purpose": "Whether to run browser in headless mode",
+        "sample_value": "false",
+        "config_source": "environment_config",
+        "priority": "medium"
+      },
+      {
+        "config_key": "screenshot_on_failure",
+        "purpose": "Whether to capture screenshots on test failures",
+        "sample_value": "true",
+        "config_source": "environment_config",
+        "priority": "medium"
+      }
+    ]
+  },
+  "automation_notes": {
+    "complexity_assessment": "medium",
+    "complexity_justification": "This test case involves a standard multi-field registration form with validation, form submission, and success verification. The complexity is medium due to: (1) Multiple form fields requiring sequential data entry, (2) Password masking and confirmation validation, (3) Potential async validation on email field, (4) Form submission with loading state handling, (5) Page navigation after submission, (6) Multiple assertions for success verification. No complex dynamic elements, iframes, file uploads, or multi-window handling observed. The test follows a linear flow with clear success criteria.",
+    "estimated_locator_count": 23,
+    "estimated_page_objects": 4,
+    "estimated_action_methods": 15,
+    "estimated_assertions": 12,
+    "estimated_utility_functions": 11,
+    "estimated_api_helpers": 4,
+    "risks": [
+      {
+        "risk": "Email uniqueness constraint — test may fail if email already exists in system from previous test runs",
+        "severity": "high",
+        "mitigation": "Use dynamic email generation with timestamp (e.g., john.doe+{timestamp}@example.com) or implement API-based cleanup to delete test user before/after test execution"
+      },
+      {
+        "risk": "Async validation on email field may cause timing issues if not properly waited for",
+        "severity": "medium",
+        "mitigation": "Implement explicit waits after email entry to ensure any async validation completes before proceeding to next field"
+      },
+      {
+        "risk": "Form submission may have variable response time depending on backend load, causing flaky waits",
+        "severity": "medium",
+        "mitigation": "Use explicit waits with proper conditions (e.g., wait for loading spinner to disappear, wait for success page to load) instead of fixed delays"
+      },
+      {
+        "risk": "Password requirements may change or vary across environments, causing test data to become invalid",
+        "severity": "medium",
+        "mitigation": "Externalize password requirements in configuration and generate passwords dynamically based on requirements, or maintain environment-specific test data"
+      },
+      {
+        "risk": "Email verification system dependency — if email service is down, test may fail at verification message step",
+        "severity": "low",
+        "mitigation": "Mock email service in test environment or make email verification message assertion a soft assertion with appropriate logging"
+      },
+      {
+        "risk": "Dynamic element IDs or class names may require robust locator strategy",
+        "severity": "medium",
+        "mitigation": "Use data-testid attributes if available, or use stable CSS selectors based on element structure and labels rather than dynamic IDs"
+      }
+    ],
+    "recommendations": [
+      "Implement Page Object Model pattern with RegistrationPage and RegistrationSuccessPage classes containing all locators and action methods for better maintainability",
+      "Use dynamic email generation with timestamp to ensure email uniqueness across test runs and avoid duplicate email errors",
+      "Implement API-based test data cleanup in teardown to delete created user account and keep test environment clean",
+      "Use explicit waits with proper conditions for all element interactions, especially for form submission and page navigation",
+      "Externalize all test data (first name, last name, password, phone number) to a test data file or configuration for easy maintenance",
+      "Add comprehensive logging at each step to aid in debugging failures, especially for form validation and submission steps",
+      "Implement screenshot capture on assertion failures for all critical verification steps",
+      "Consider creating a composite method 'submit_registration' that fills all fields and clicks register button for reusability",
+      "Add validation for password strength indicator if present on the page to ensure it shows appropriate strength level",
+      "Implement retry logic for form submission step to handle transient network issues",
+      "Consider adding negative test cases for invalid data scenarios (invalid email format, password mismatch, missing required fields) using the same page objects",
+      "Use environment-specific configuration for base URL, timeouts, and browser settings to support multi-environment testing"
+    ],
+    "special_handling_notes": [
+      "Email field may trigger async validation on blur — ensure proper wait after entering email before proceeding",
+      "Password and confirm password fields must contain identical values — consider using same variable for both",
+      "Phone number field may auto-format input (e.g., adding parentheses or dashes) — verification should account for formatted value",
+      "Loading spinner appears during form submission — must wait for it to disappear before verifying success page",
+      "Success message and email verification message are separate elements — both must be verified independently",
+      "If CAPTCHA is present on registration form in production, it must be disabled or bypassed in test environment",
+      "Email verification link testing would require integration with email testing service (e.g., Mailinator, Mailtrap) which is beyond this test case scope"
+    ],
+    "framework_compatibility_notes": "This test case analysis is structured to be compatible with the Aura framework's page object model and utility patterns. All suggested component names follow the framework's naming conventions (snake_case for elements and methods, PascalCase for page objects). The analysis identifies all necessary locators, action methods, assertion methods, and utility functions that should be implemented in the Aura framework to support this test case automation. The component needs summary provides a clear mapping for downstream agents to identify what exists in the codebase and what needs to be created."
+  }
+}
